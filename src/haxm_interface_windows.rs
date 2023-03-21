@@ -52,7 +52,7 @@ pub struct interruptibility_state_t_anon_struct {
 #[repr(C)]
 pub union interruptibility_state_t {
     pub raw: UINT32,
-    pub anon_struct: interruptibility_state_t_anon_struct,
+    pub anon_struct: std::mem::ManuallyDrop<interruptibility_state_t_anon_struct>,
     pub pad: UINT64
 }
 
@@ -76,7 +76,7 @@ pub struct segment_desc_t_anon_struct {
 #[repr(C)]
 pub union segment_desc_t_anon_union {
 
-    pub anon_struct: segment_desc_t_anon_struct,
+    pub anon_struct: std::mem::ManuallyDrop<segment_desc_t_anon_struct>,
     pub ar: UINT32
 }
 
@@ -99,7 +99,7 @@ pub struct eight_bit_values {
 
 #[repr(C)]
 pub union gp_reg {
-    pub b8: eight_bit_values,
+    pub b8: std::mem::ManuallyDrop<eight_bit_values>,
     pub b16: UINT16,
     pub b32: UINT32,
     pub b64: UINT64
@@ -128,7 +128,7 @@ pub struct vcpu_state_t_anon_union_1_anon_struct {
 #[repr(C)]
 pub union vcpu_state_t_anon_union_1 {
     pub regs: [UINT64;16],
-    pub anon_struct: vcpu_state_t_anon_union_1_anon_struct
+    pub anon_struct: std::mem::ManuallyDrop<vcpu_state_t_anon_union_1_anon_struct>
 }
 
 #[repr(C)]

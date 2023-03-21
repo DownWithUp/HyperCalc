@@ -451,7 +451,9 @@ fn main() {
         calc_vm.vcpus[0].cpu_state.dr6 = 0xFFFF0FF0; // Set here, but also automatically by the Haxm driver
         calc_vm.vcpus[0].cpu_state.dr7 = 0x400; // Set here, but also automatically by the Haxm driver
 
-        calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rsp.b32 = 0x100;
+        //calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rsp.b32 = 0x100;
+        ptr::write(&calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rsp.b32 as *const u32 as *mut u32, 0x1000);
+
         calc_vm.vcpus[0].cpu_state.anon_union_2.rip = 0;
 
         calc_vm.vcpus[0].cpu_state.anon_union_3.eflags = 0x202;
@@ -464,7 +466,8 @@ fn main() {
             panic!("{}", error_message);
         }
         else if let Ok(result1) = first_input {
-            calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rax.b32 = result1;
+            //calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rax.b32 = result1;
+            ptr::write(&calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rax.b32 as *const u32 as *mut u32, result1);
             int1 = result1;
         }
         
@@ -475,7 +478,8 @@ fn main() {
             panic!("{}", error_message);
         }
         else if let Ok(result2) = second_input {
-            calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rcx.b32 = result2;
+            //calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rcx.b32 = result2;
+            ptr::write(&calc_vm.vcpus[0].cpu_state.anon_union_1.anon_struct.rcx.b32 as *const u32 as *mut u32, result2);
             int2 = result2;
         }
           
