@@ -1,5 +1,3 @@
-#![feature(untagged_unions)]
-
 use std::ptr;
 
 use winapi::um::memoryapi::VirtualAlloc;
